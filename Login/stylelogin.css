@@ -135,5 +135,7 @@ input-box i{
  }
 
  .input{
+    display: flex;
+    align-items: center;
     
  }

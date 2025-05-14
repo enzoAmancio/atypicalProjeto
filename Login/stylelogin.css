@@ -126,12 +126,13 @@ body{
     font-size: 14px;
     text-align: center;
     margin: 20px 0 15px;
+    color:#093adb;
     
 }
 
 .register-link a{
     text-decoration: none;
-    color:#fff;
+    color:#093adb;
     font-weight: 600;
  }
 
@@ -145,6 +146,18 @@ body{
     align-items: center;
     
  }
+
+ .hone{
+    align-items: center;
+
+ }
+
+ .htwo{
+    
+    
+   transform: translatex(1000px)
+ }
+ 
 
 
 

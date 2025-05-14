@@ -25,6 +25,8 @@ a:hover {
     margin: 45%;
     letter-spacing: 4px;
     text-align: center;
+    text-decoration: none;
+    color:#fff;
     
 
 
@@ -54,7 +56,9 @@ height:92vh;
 
 .mobile-menu{
 display: none;
-    cursor:pointer;
+cursor:pointer;
+text-decoration: none;
+color: #fff;
 
 }
 
@@ -70,7 +74,10 @@ margin: 8px;
 overflow-x: hidden;
 
     }
-.nav-list {
+
+  
+    
+    .nav-list {
     position: absolute;
     top: 8vh;
     right: 0;
@@ -81,6 +88,7 @@ overflow-x: hidden;
     align-items: center;
     justify-content: space-around;
     transform: translate(100%);
+    text-decoration: none;
 
 }
 .nav-list li {

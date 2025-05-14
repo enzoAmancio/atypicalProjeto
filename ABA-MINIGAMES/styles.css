@@ -1,0 +1,62 @@
+body{
+    background-color: #53deb7;
+    text-align: center;
+    font-family: Georgia, serif;
+   
+}
+
+.flutuar{
+display: inline-block;
+animation: flutuar 2s infinite ease-in-out;/*animação*/
+background-color: #4d9ed7;
+color: white;
+font-family: Georgia, serif;
+font-size: 45px;
+font-weight: bold;
+padding: 10px 20px;
+border-radius: 30px;
+box-shadow: 0 10px 0 #27597c;
+text-align: center;
+width: fit-content;
+margin: 50px auto;
+}
+@keyframes flutuar{
+    0%, 100%{
+        transform: translateY(0) ;
+    }
+    50%{
+        transform: translateY(-15px);
+    } /*rotação animação para cima e para baixo*/
+}
+.home img{
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 240px);
+  gap: 90px 170px; /*Espaçamento entre colunas e linhas*/
+  justify-content: center; 
+  margin-top: 40px;
+}
+
+.buttons {
+  background-color: #4db89c;
+  border-radius: 20px;
+  padding: 45px 0;
+  font-size: 17px;
+  color: white;
+  box-shadow: 0 28px #429880;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.buttons:hover {
+  transform: translateY(-4px);
+}
+
+

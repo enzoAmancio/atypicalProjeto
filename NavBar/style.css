@@ -138,6 +138,17 @@ display: block;
 }
 
 
+.hone{
+    align-items: center;
+    text-decoration: none;
+}
+
+.htwo{
+    align-items: center;
+    text-decoration: none;
+    float: rigth; 
+}
+
    
     
     

@@ -1,0 +1,105 @@
+body {
+      font-family: 'Georgia', serif;
+      background-color: #fff;
+      color: #1a2a3a;
+      text-align: center;
+      padding: 10px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2em;
+      font-weight: bold;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    h3 {
+      font-size: 1em;
+      font-weight: bold;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      flex-direction: row;
+    }
+
+    .box {
+      width: 300px;
+      padding: 20px;
+      border-radius: 16px;
+      text-align: center;
+      color: white;
+      font-size: 1.2em;
+      position: relative;
+      flex-direction:column;
+    }
+
+    .pix {
+      background-color: #1d2e45;
+      border: 2px solid orange;
+      box-shadow: 0 0 10px rgba(255, 165, 0, 0.3);
+    }
+
+    .pix::before {
+      content: "Recomendado";
+      position: absolute;
+      top: -15px;
+      right: -10px;
+      background-color: orange;
+      color: white;
+      font-size: 0.8em;
+      padding: 6px 12px;
+      border-radius: 20px;
+    }
+    .bank,.qrcode {
+      background-color: #1d2e45;
+      border: 2px solid #ffffff;
+      text-align: center;
+    }
+
+    .icon {
+      font-size: 2em;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+
+    .label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .value {
+      font-family: monospace;
+      font-size: 1em;
+    }
+
+    .qr-code-conteiner {
+      padding: 2px;
+      background-color: #1d2e45;
+      border: 2px solid #1d2e45;
+      border-radius: 10px;
+      box-shadow:0 4px 8px rgba(0,0,0,0.1) ;
+      text-align: center;
+      margin: auto;
+      width: 200px;
+      height: 200px;
+    }
+    .qr-code-conteiner img {
+      width: 200px;
+      height: 200px;
+      border-radius: 10px;
+    }
+    .carousel-item {
+      width: 100%;
+      height: 500px;
+    }
+
+
+  

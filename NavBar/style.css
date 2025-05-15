@@ -139,10 +139,10 @@ display: block;
 }
 
 .carousel-item{
-background-size: cover 
-height: 100% 
-width: 100%
-object-fit: cover
+background-size: cover; 
+height: 100%; 
+width: 100%;
+object-fit: cover;
 }
 
 

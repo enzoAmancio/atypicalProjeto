@@ -21,8 +21,8 @@ a:hover {
 }
 
 .logo{
-    font-size:24px;
-    margin: 45%;
+    font-size:0px;
+    margin: 0px;
     letter-spacing: 4px;
     text-align: center;
     text-decoration: none;
@@ -46,6 +46,9 @@ height:92vh;
 .nav-list {
    list-style: none;
    display: flex;
+   justify-content: center;
+   align-items: center;
+   text-decoration: none !important;
 }
 
 .nav-list li {
@@ -53,6 +56,14 @@ height:92vh;
     margin-left: 32px;  
     
 
+}
+
+
+.logoMarca{
+    width: 150px;
+    height: 80px;
+    float: left;
+    
 }
 
 .mobile-menu{
@@ -115,11 +126,14 @@ display: block;
 
 .login{
 
-    width: 30px;
-    border-radius: 40%;
-    margin:-20px;
-    padding:20px;
-    display:flex;
+width: 50px;
+border-radius: 40%;
+margin:-20px;
+padding:20px;
+display:flex;
+right: 10hz;
+
+
 }
 
 .hio{
@@ -131,9 +145,15 @@ display: block;
 .header{
     text-decoration: none;
     background-color:#223A51;
+    text-decoration: none !important;
 }
 
-
+.nave{
+    
+    justify-content: space-between;
+    text-decoration: none !important;
+    
+}
    
     
     

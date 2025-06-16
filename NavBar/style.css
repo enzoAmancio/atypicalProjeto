@@ -11,10 +11,9 @@
 }
 
 a {
-color: #fff;
-text-decoration: none;
-transition: 0.3;
-
+  color: #fff;
+  text-decoration: none;
+  transition: opacity 0.3s;
 }
 
 a:hover {

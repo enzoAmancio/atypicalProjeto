@@ -4,105 +4,65 @@
 <head>
   <meta charset="UTF-8">
   <title>Doação</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
   <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-   <header class="header">
-        
-        <nav class="nave">
-           
-        <a class="logo" href="/">Atypical</a>
-        <div class='mobile-menu'></div>
-         <div class="line1"></div>
-         <div class="line2"></div>
-         <div class="line3"></div>
-   
-        
-            
-           <ul class="nav-list">
-           <li> <a href="/">Inicio</a></li>
-           <li> <a href="/">Oque é o autismo</a></li>
-           <li> <a href="/">Convivendo com Tea</a></li>
-           <li><a href="/">Nosso trabalho</a></li>
-           <li><a href="/">Quem somos</a></li>
-           <li><a href="/">Mini Games</a></li>
+  <header class="header">
+    <nav class="navbar">
+      <a class="logo" href="/">Atypical</a>
+      <button class="mobile-menu" aria-label="Abrir menu">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </button>
+      <ul class="nav-list">
+        <li><a href="/">Início</a></li>
+        <li><a href="/">O que é o autismo</a></li>
+        <li><a href="/">Convivendo com TEA</a></li>
+        <li><a href="/">Nosso trabalho</a></li>
+        <li><a href="/">Quem somos</a></li>
+        <li><a href="/">Mini Games</a></li>
+      </ul>
+      <a href="/Login/login.html" class="login-link">
+        <img src="/login.png" alt="Login" class="login-img">
+      </a>
+    </nav>
+  </header>
 
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-<div>
-
-   <a href="/Login/login.html">
-   <img src="/login.png" alt="imagem de login" class="login">
-</a>
-</div>  
-
-        </ul>
-        </nav>
-       </header>
-
-
-</div>
-    
-    <div id="demo" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-                <button type="button" 
-                    data-bs-target="#demo"
-                    data-bs-slide-to="0"
-                    class="active"
-                    arial-label="Slide 1">
-                </button>
-
-                <button type="button"
-                    data-bs-target="#demo"
-                    data-bs-slide-to="1"
-                    arial-label="Slide 2">
-                </button>
-
-                <button type="button"
-                    data-bs-target="#demo"
-                    data-bs-slide-to="2"
-                    arial-label="Slide 3">
-                </button>
-            </div>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="img/aty.img.JPG" alt="Cavalo" class="d-block w-100"> 
-                </div>
-
-                <div class="carousel-item">
-                    <img src="img/ai-generated-8489717_960_720.png" alt="Urubu Albino" class="d-block w-100">
-                </div>
-
-                <div class="carousel-item">
-                    <img src="img/ai-generated-8489648_1280.png" alt="Passarinho" class="d-block w-100" >
-                </div>
-            </div>
-
-            <button class="carousel-control-prev"
-                type="button"
-                data-bs-target="#demo"
-                data-bs-slide="prev">
-
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visully-hidden">Previous</span>
-            </button>
-
-            <button class="carousel-control-next"
-                type="button"
-                data-bs-target="#demo"
-                data-bs-slide="next">
-
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visully-hidden">Next</span>
-            </button>
-        </div>
-
-        <div class="container-fluid mt-3">  
-        </div>
-  </div>c
-
+  <div id="carouselExampleIndicators" class="carousel slide">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+        aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+        aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+        aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="img/aty.img.JPG" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="img/ai-generated-8489717_960_720.png" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="img/ai-generated-8489648_1280.png" class="d-block w-100" alt="...">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+      data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+      data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
   <h1>COMO DESEJA FAZER SUA DOAÇÃO?</h1>
 
   <div class="container">
@@ -117,12 +77,20 @@
     </div>
   </div>
   <div class="box qr-code"></div>
-    <div class="qr-code">
-      <span class="label">Se preferir escanear aqui está o Qr-Code:</span>
-      <div class="qr-code-conteiner">
-        <img src="img/minha conta.png" alt="Qr-Code">
+  <div class="qr-code">
+    <span class="label">Se preferir escanear aqui está o Qr-Code:</span>
+    <div class="qr-code-conteiner">
+      <img src="img/minha conta.png" alt="Qr-Code">
     </div>
-  </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    <footer>
+      <div class="footer-content">
+        <p>Atypical Project 2025</p>
+      </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+      crossorigin="anonymous"></script>
+    <script src="navjs.js"></script>
 </body>
+
 </html>

@@ -55,25 +55,42 @@ const checkCards = () => {
         secondcard = '';
     }, 500);
 }
-
 }
-
-const revealCard = ({target}) => {
-    if (target.parentNode.className.includes('reveal-card')) {
+let cartasViradas = [];
+let bloqueado = false;
+function virarCarta(carta) {
+    if(bloqueado || carta.classList.contains('virada') || cartasViradas.length >= 2) return;
+       carta.classList.add('virada');
+       cartasViradas.push(carta);
+       if (cartasViradas.length ===2){
+            bloqueado =true;
+            setTimeout(() =>{
+                if (cartasViradas[0].dataset.valor === cartasViradas[1].dataset.valor){
+                }else {
+                    cartasViradas.forEach(c => c.classList.remove('virada'));
+                }
+                cartasViradas = [];
+                bloqueado = false;
+            },1000);
+       }
+}
+const revealCard = ({ target }) => {
+    if (
+        target.parentNode.classList.contains('reveal-card') ||
+        firstcard && secondcard
+    ) {
         return;
     }
+
+    target.parentNode.classList.add('reveal-card');
+
     if (firstcard === '') {
-        target.parentNode.classList.add('reveal-card');
         firstcard = target.parentNode;
-    }else if (secondcard=== ''){
-        target.parentNode.classList.add('reveal-card');
+    } else if (secondcard === '') {
         secondcard = target.parentNode;
         checkCards();
     }
-
-   target.parentNode.classList.add('reveal-card')
 }
-
 const createCard = (character) => {
     const card = createElement('div', 'card');
     const front = createElement('div', 'face front');

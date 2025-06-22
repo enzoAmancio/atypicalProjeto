@@ -1,7 +1,7 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Montserrat', Helvetica, Arial, Lucida, sans-serif!important;
 }
 
 a {
@@ -9,12 +9,36 @@ a {
   color: inherit;
 }
 
+h1{
+  font-size: 30px!important;
+  font-weight: bold!important;
+  color: #0066b3!important;
+}
+
+
 .carousel-indicators {
   display: none;
   /* Esconde os indicadores do carrossel */
 }
 
-
+.btn{
+  transition: 0.3s;
+  background-color: #0072a3;
+  color: white;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  border: none;
+  display: flex;
+}
+.btn:hover {
+  transition: 0.3s;
+  /*transform: translateY(-2px);*/
+  background-color: #0066b3;
+  border: #0072a3 1px solid;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+}
 
 .btn-tea {
   transition: 0.3s;
@@ -25,16 +49,47 @@ a {
   font-size: 1.2rem;
   border: none;
   display: flex;
-  margin: -20% auto;
+  margin-top: 2rem;
+ 
+  
 }
 
 .btn-tea:hover {
   transition: 0.3s;
-  transform: translateY(-2px);
+  /*transform: translateY(-2px);*/
   background-color: #ffffff00;
   border: #0072a3 1px solid;
   color: rgb(255, 255, 255);
   text-decoration: none;
+  content: "Saiba mais >"!important;
+}
+.btn-container{
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 10rem;
+  margin-bottom: 10rem;
+  cursor: pointer;
+}
+
+
+.card{
+  background-color: #f4f4f4!important;
+  border: none;
+  padding: 0 1rem;
+  margin: 0 auto;
+  justify-content: center;
+  
+}
+.card img{
+  height: 30vh;
+  width: 100%;
+}
+.card-body h5{
+  font-weight: bold;
+  color: #0066b3;
 }
 
 .carousel-caption {
@@ -48,26 +103,34 @@ a {
 }
 
 .carousel-inner {
-  max-height: 400px;
+  max-height: 500px;
   /* ajuste a altura como preferir */
 }
 
 .carousel-item img {
-  max-height: 400px;
+ 
+  max-height: 600px;
   /* mesma altura do .carousel-inner */
   width: auto;
   height: 500vh;
   object-fit: cover;
-
+  width: 110%!important;
+  height: 110%!important;
+  opacity: 0.9mportant;
+  filter: blur(2px);
+  
 
 
 }
 
-.carousel-item.blurred img {
-  filter: blur(5px);
-  /* Aplica um desfoque de 5px */
-  transition: filter 0.3s ease;
-}
+/*.carousel-item.blurred img {
+  transition: filter 0.4s ease;
+  width: 110%!important;
+  height: 110%!important;
+  object-fit: cover!important;
+  filter: blur(8px)!important;
+  background-color: #00000000;
+}*/
 
 
 
@@ -112,9 +175,10 @@ header img {
   border-bottom: 4px solid #005f87 !important;
 }
 
-.navbar-brand:hover {
-  border-bottom: 4px solid #fff !important;
-}
+/*.navbar-brand:hover {
+  border-bottom: 4px solid #ffffff !important;
+
+}*/
 
 .nav-link {
   color: #ffffff !important;
@@ -126,6 +190,8 @@ header img {
 
 .nav-link:hover {
   border-bottom: 4px solid #fff !important;
+    transition: filter 0.4s ease!important;
+  transform: translateY(2px)!important;
 }
 
 .bg-body-tertiary {
@@ -137,7 +203,7 @@ header img {
 .home {
 
   text-align: center;
-  padding: 60px 20px;
+  padding: 90px 20px;
 }
 
 .home h1 {
@@ -152,38 +218,41 @@ header img {
   margin: 0 auto;
 }
 
-@media (max-width: 768px) {
 
 
-
-
-  .btn-tea {
-    transition: 0.3s;
-    background-color: #0072a3 !important;
-    color: white;
-    border-radius: 20px;
-    padding: 10px 20px;
-    font-size: 1.2rem;
-    border: none;
-    display: flex;
-    margin: -20% auto;
+/* Tablet */
+@media (min-width:767px) and (max-width: 1023px) {
+  .btn-container {
+    margin-top: -10rem;
+    margin-bottom: -10rem;
   }
-
-  .btn-tea:hover {
-    transition: 0.3s;
-    transform: translateY(-2px);
-    background-color: #ffffff00;
-    border: #0072a3 1px solid;
-    color: rgb(255, 255, 255);
-    text-decoration: none;
-  }
-
-  .carousel-caption {
-
-    margin-bottom: 4rem;
-  }
-
-  .carousel-caption .btn-tea {
-    margin-bottom: 0.5rem;
-  }
+.carousel-inner{
+  object-fit: cover;
 }
+}
+
+
+
+
+/* Celular */
+@media (min-width: 320px) and (max-width: 767px)  {
+  .btn-container {
+    margin-top: -8rem;
+    margin-bottom: -8rem;
+    width: 100%;
+    padding: 0 1rem;
+  }
+ 
+
+}
+
+
+/*@media (max-width: 1024px) and (orientation: landscape) {
+  .btn-container {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    width: 100%;
+    /*padding: 0 4rem;
+    object-fit: cover;
+  }*/
+

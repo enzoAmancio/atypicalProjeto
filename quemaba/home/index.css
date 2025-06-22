@@ -15,6 +15,13 @@ h1{
   color: #0066b3!important;
 }
 
+.apoio{
+  background-color: #dedede;
+  width: 100%!important;
+  padding: 5rem;
+  overflow-x: hidden;
+  
+}
 
 .carousel-indicators {
   display: none;
@@ -26,7 +33,7 @@ h1{
   background-color: #0072a3;
   color: white;
   border-radius: 20px;
-  padding: 10px 20px;
+  padding: 15px 20px;
   font-size: 1.2rem;
   border: none;
   display: flex;
@@ -73,19 +80,37 @@ h1{
   margin-bottom: 10rem;
   cursor: pointer;
 }
-
+.btn-oq{
+  
+  padding: 5rem;
+}
 
 .card{
   background-color: #f4f4f4!important;
-  border: none;
+  border: none!important;
   padding: 0 1rem;
-  margin: 0 auto;
+  margin: 0 2rem;
   justify-content: center;
   
 }
+.card-apoio{
+  background-color: #dedede!important;
+  border: none!important;
+  padding: 0 1rem;
+  margin: 0 auto;
+  justify-content: center;
+}
 .card img{
-  height: 30vh;
+  max-height: 20vh;
+  height: 100%;
   width: 100%;
+  object-fit: cover;
+}
+.card-apoio img{
+  max-height: 25vh;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 .card-body h5{
   font-weight: bold;
@@ -121,6 +146,42 @@ h1{
   
 
 
+}
+.espacamento{
+  padding: 4rem;
+  margin-bottom: 5rem;
+  margin-top: 5rem;
+  width: 100%;
+}
+
+.img-fluid{
+  max-width: 500vw;
+  width: 100%;
+  height: 50vh;
+  object-fit: cover;
+}
+
+.img-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.img-wrapper img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.zigzag {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  pointer-events: none;
+  z-index: 1;
 }
 
 /*.carousel-item.blurred img {
@@ -192,6 +253,11 @@ header img {
   border-bottom: 4px solid #fff !important;
     transition: filter 0.4s ease!important;
   transform: translateY(2px)!important;
+}
+.nosso-trabalho h2{
+  font-weight: bold; color: #0066b3;border-bottom: 5px solid #0066b3;
+  display: inline-block;
+  text-align: left;
 }
 
 .bg-body-tertiary {

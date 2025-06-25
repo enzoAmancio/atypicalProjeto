@@ -1,0 +1,163 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+*{   
+    padding: 0;
+    margin: 3px;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url(../backgroundLogin.jpg);
+    background-size:cover;
+    background-position: right;
+   
+}
+
+.container{
+    width: 420px;
+    background-color: transparent;
+    border: 2px solid rgba(7, 12, 255, 0.2);
+    border-radius: 40px;
+    color:#093adb;
+    padding: 30px 50px;
+    box-shadow: 0 0 10px rgba(0,0,0,2.);
+    backdrop-filter: blur(120px);
+    
+
+}   
+.container h1{
+    font-size: 36px;
+    text-align: center;
+}
+
+.input-box{
+    white-space: nowrap;
+    width: 100%;
+    height: 100%;
+    margin: 10px ;
+    
+  
+}
+.icone1{
+    margin:auto;
+    padding: auto;
+    margin-right: 335px;
+    margin-top: -15px;
+}
+.icone2{
+    margin:auto;
+    padding: auto;
+    margin-right: 335px;
+    margin-top: -100px;
+}
+
+
+.input-box input{
+
+    width: 100%;
+    height: 100px 100px 100px 100px;
+    background-color: transparent;
+    border:2px solid rgba(5, 0, 0, 0.2);
+    border-radius: 40px;
+    outline:none;
+    font-size: 16px;
+    color:#093adb;
+    padding:20px 45px 20px 20px;
+}
+
+.input-box input::placeholder{
+    color: #093adb;
+   
+
+}
+
+.input-box i{
+
+    position: absolute;
+    right: 20px;
+    top:50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+.box1{
+    font-size: small;
+    margin-top: 15px;
+    float: left;
+    color: #fff;
+    text-decoration: none;
+}
+.box2{
+    float: right
+}
+.loginbutton{
+    margin-left: 50px;
+    margin-right: auto;
+}
+.login2{
+    width: 100%;
+    height: 50px;
+    background-color: #fff;
+    border:none;
+    border-radius: 40px;
+    cursor:pointer;
+    font-size: 16px;
+    color:#333;
+    font-weight: 600;
+    box-shadow: 0 0 10px rgba(0,0,0,2.);
+    margin-top: 20px;
+    
+   
+}
+
+.login2:hover{
+    background-color: transparent;
+    border: 2px solid;
+    color: #fff;
+    transition: 0.2s;
+}
+
+.register-link{
+    font-size: 14px;
+    text-align: center;
+    margin: 20px 0 15px;
+    color:#093adb;
+    
+}
+
+.register-link a{
+    text-decoration: none;
+    color:#093adb;
+    font-weight: 600;
+ }
+
+ .register-link a :hover{
+
+    text-decoration: underline;
+ }
+
+ .input{
+    display: flex;
+    align-items: center;
+    
+ }
+
+ .hone{
+    align-items: center;
+
+ }
+
+ .htwo{
+    
+    
+   transform: translatex(1000px)
+ }
+ 
+
+
+

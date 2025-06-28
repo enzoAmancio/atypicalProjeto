@@ -1,16 +1,4 @@
-/*const buttons = document.querySelectorAll('.btn-tea');
 
-buttons.forEach(button => {
-    button.addEventListener('mouseenter', () => {
-        const item = button.closest('.carousel-item');
-        if (item) item.classList.add('blurred');
-    });
-
-    button.addEventListener('mouseleave', () => {
-        const item = button.closest('.carousel-item');
-        if (item) item.classList.remove('blurred');
-    });
-});*/
 const botao = document.getElementById('botao-saiba-mais');
 let textoOriginal = 'Saiba mais';
 let textoHover = 'Saiba mais >';
@@ -28,3 +16,11 @@ botao.addEventListener('click', () => {
   botao.textContent = textoHover;
   window.location.href = 'doacao.html'
 });
+
+
+
+function mostrarTexto (){
+  alert('Oie')
+  const texto = document.getElementById('texto')
+    texto.innerText= 'Ola'
+}

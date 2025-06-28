@@ -1,0 +1,23 @@
+body {
+    font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.nav-bar{
+    background-color: #005f87 !important;
+}
+.btn{
+    color: #fff !important;
+}
+.btn:hover {
+  border-bottom: 3px solid #fff !important;
+    transition: filter 0.4s ease!important;
+  transform: translateY(2px)!important;
+}
+.h1{
+    color: #fff !important;
+    margin-left: 50px !important;
+}
+.h2{
+  margin: 40px 0 !important ;
+  font-size: 20px !important;
+}

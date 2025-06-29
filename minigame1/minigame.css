@@ -1,0 +1,145 @@
+:root {
+  /* Blocos maiores por padrão (melhor para toques) */
+  --tile-size: clamp(55px, 14vw, 80px);
+  --gap-size: clamp(8px, 2vw, 18px);
+}
+.btn{
+  background-color: rgb(0, 0, 0);
+  padding: 1rem;
+  border-radius: 20px;
+  color: #fff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+  text-align: center;
+  padding: 20px;
+  background-color: beige;
+}
+
+/* Cabeçalho */
+h2 {
+  font-size: clamp(1.2rem, 4vw, 2rem);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.star {
+  width: clamp(35px, 7vw, 50px);
+  height: auto;
+  transform: translateY(4px);
+}
+
+/* Imagem central */
+#imagemObjeto {
+  margin-top: 1.2rem;
+  width: clamp(120px, 60vw, 250px);
+  max-width: 100%;
+  height: auto;
+  pointer-events: none;
+}
+
+/* Palavras e letras */
+.palavra,
+.letras {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--gap-size);
+  margin: 1.5rem 0;
+}
+
+.dropzone,
+.letra {
+  width: var(--tile-size);
+  height: var(--tile-size);
+  line-height: var(--tile-size);
+  font-size: calc(var(--tile-size) * 0.55);
+  border-radius: 8px;
+  user-select: none;
+}
+
+/* Dropzones */
+.dropzone {
+  border: 2px dashed #888;
+}
+
+/* Letras */
+.letra {
+  background-color: #ccc;
+  cursor: grab;
+  transition: background 0.15s;
+  touch-action: none; /* importante para toque */
+}
+.letra:active { cursor: grabbing; }
+.letra:hover  { background-color: #bbb; }
+
+/* Mensagem */
+#mensagem {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-top: 1.2rem;
+}
+
+/* Espaçamento opcional (caso use essas classes em outras páginas) */
+.espacamento {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.container-fluid-sm {
+  padding: 2rem;
+  margin: 2rem auto;
+  background-color: beige;
+  max-width: 100%;
+}
+.bordas{
+  border: 2px solid #bdb9b9de;
+  border-radius: 5px;
+  max-width: 100%;
+  max-height: fit-content;
+}
+
+/* Telefones pequenos */
+@media  (min-width: 320px) and (max-width: 767px){
+  .container-fluid-sm {
+  padding: auto;
+  margin: 10rem auto!important;
+  background-color: beige;
+  max-width: 100%;
+}
+.container-fluid{
+  padding: 2rem;
+  max-width: 100%;
+}
+  :root {
+    --tile-size: clamp(60px, 20vw, 80px); /* aumenta tocabilidade */
+  }
+
+  h2 {
+    font-size: 1.1rem;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  #mensagem {
+    font-size: 1rem;
+  }
+  .palavra,
+.letras {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--gap-size);
+  margin: 1.5rem 0;
+}
+}

@@ -1,22 +1,22 @@
 const emotions = [
   {
-    image: "feliz.jpeg", 
+    image: "imgs/minigame2/feliz.jpeg", 
     answer: "Alegria"
   },
   {
-    image: "triste.png", 
+    image: "imgs/minigame2/triste.png", 
     answer: "Tristeza"
   },
   {
-    image: "raiva.png", 
+    image: "imgs/minigame2/raiva.png", 
     answer: "Raiva"
   },
-   {
-    image: "fome.png", 
+  {
+    image: "imgs/minigame2/fome.png", 
     answer: "Fome"
   },
-   {
-    image: "surpreso.jpg", 
+  {
+    image: "imgs/minigame2/surpreso.jpg", 
     answer: "Surpreso"
   }
 ];

@@ -1,11 +1,11 @@
 // ——— Dados do jogo ———
 const objetos = [
-  { palavra: "BOLA",   imagem: "bola.png" },
-  { palavra: "SAPO",   imagem: "sapo.png" },
-  { palavra: "UVA",    imagem: "uva.png" },
-  { palavra: "LIVRO",  imagem: "livro.png" },
-  { palavra: "GATO",   imagem: "gato.png" },
-  { palavra: "COELHO", imagem: "coelho.png" },
+  { palavra: "BOLA",   imagem: "imgs/minigame1/bola.png" },
+  { palavra: "SAPO",   imagem: "imgs/minigame1/sapo.png" },
+  { palavra: "UVA",    imagem: "imgs/minigame1/uva.png" },
+  { palavra: "LIVRO",  imagem: "imgs/minigame1/livro.png" },
+  { palavra: "GATO",   imagem: "imgs/minigame1/gato.png" },
+  { palavra: "COELHO", imagem: "imgs/minigame1/coelho.png" },
 ];
 
 // ——— Estado e elementos ———

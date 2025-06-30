@@ -2,36 +2,39 @@ body {
   font-family: Arial, Helvetica, sans-serif !important;
 }
 
-.minhanav {
-  background-color: #005f87 !important;
-}
-
-.bg-body-tertiary {
-
-  color: white !important;
-}
-
+/* --- BARRA DE NAVEGAÇÃO --- */
 
 .navbar-brand {
   color: #ffffff !important;
-  /*padding: 1%;*/
   margin: 2px 0;
   margin-right: 35%;
   margin-left: 4rem;
   border-bottom: 4px solid #005f87 !important;
 }
 
+/* .navbar-brand:hover {
+  border-bottom: 4px solid #ffffff !important;
+} */
+
 .nav-link {
   color: #ffffff !important;
   border-bottom: 4px solid #005f87 !important;
   margin-right: 1rem;
-
 }
 
 .nav-link:hover {
   border-bottom: 4px solid #fff !important;
   transition: filter 0.4s ease !important;
   transform: translateY(2px) !important;
+}
+
+.nav-tabsbg {
+  background-color: #0066b3;
+}
+
+.bg-body-tertiary {
+  background-color: #005f87 !important;
+  color: white !important;
 }
 
 

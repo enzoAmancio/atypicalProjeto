@@ -1,4 +1,3 @@
-// Jogo com fases de imagem + curiosidades sobre animais
 
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
@@ -8,15 +7,15 @@ const faseSpan = document.getElementById("fase");
 const mensagem = document.getElementById("mensagem");
 
 const titulo = document.getElementById('titulo');
-const texto = titulo.textContent; 
-titulo.textContent = '';  // limpa o texto para animação
+const texto = titulo.textContent;
+titulo.textContent = '';
 
 let i = 0;
 function digitar() {
   if (i < texto.length) {
     titulo.textContent += texto.charAt(i);
     i++;
-    setTimeout(digitar, 100); 
+    setTimeout(digitar, 100);
   }
 }
 digitar();
@@ -186,37 +185,37 @@ async function desenharFase() {
   vidasSpan.textContent = vidas;
   faseSpan.textContent = faseAtual + 1;
 
-if (vidas <= 0) {
-  mensagem.textContent = " Fim de jogo!";
-  canvas.onclick = null;
+  if (vidas <= 0) {
+    mensagem.textContent = " Fim de jogo!";
+    canvas.onclick = null;
 
-canvas.onmousemove = (e) => {
-  const rect = canvas.getBoundingClientRect();
-  const mouseX = e.clientX - rect.left;
-  const mouseY = e.clientY - rect.top;
-  let sobreBotao = false;
+    canvas.onmousemove = (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
+      let sobreBotao = false;
 
-  for (let botao of botoes) {
-    if (
-      mouseX >= botao.x &&
-      mouseX <= botao.x + botao.w &&
-      mouseY >= botao.y &&
-      mouseY <= botao.y + botao.h
-    ) {
-      sobreBotao = true;
-      break;
-    }
+      for (let botao of botoes) {
+        if (
+          mouseX >= botao.x &&
+          mouseX <= botao.x + botao.w &&
+          mouseY >= botao.y &&
+          mouseY <= botao.y + botao.h
+        ) {
+          sobreBotao = true;
+          break;
+        }
+      }
+      canvas.style.cursor = sobreBotao ? "pointer" : "default";
+    };
+    setTimeout(() => location.reload(), 5000);
+    return;
   }
-  canvas.style.cursor = sobreBotao ? "pointer" : "default";
-};
-  setTimeout(() => location.reload(), 5000);
-  return;
-}
-if (faseAtual >= fases.length) {
-  mensagem.textContent = "🎉 Parabéns! Você venceu!";
-  setTimeout(() => location.reload(), 3000);
-  return;
-}
+  if (faseAtual >= fases.length) {
+    mensagem.textContent = "🎉 Parabéns! Você venceu!";
+    setTimeout(() => location.reload(), 3000);
+    return;
+  }
 
   const fase = fases[faseAtual];
   const botoes = [];
@@ -228,12 +227,12 @@ if (faseAtual >= fases.length) {
   if (fase.tipo === "curiosidade") {
     ctx.fillStyle = "#000";
     ctx.fillText("🧠 Curiosidade:", canvas.width / 2, 100);
-    ctx.fillText(fase.curiosidade, canvas.width / 2, 150);
-    ctx.fillText("Selecione o animal correspondente:", canvas.width / 2, 200);
+drawMultilineText(ctx, fase.curiosidade, canvas.width / 2, 140, canvas.width * 0.9, 26);
+drawMultilineText(ctx, "Selecione o animal correspondente:", canvas.width / 2, 200, canvas.width * 0.9, 26);
   } else {
     const imgAnimal = await carregarImagem(fase.imagem);
     ctx.drawImage(imgAnimal, canvas.width / 2 - 150, 50, 300, 300);
-    // Removido somErro.play() daqui
+    
   }
 
   for (let i = 0; i < opcoes.length; i++) {
@@ -249,7 +248,23 @@ if (faseAtual >= fases.length) {
 
     botoes.push({ x: x - 100, y: y - 25, w: 200, h: 50, texto });
   }
-
+  function drawMultilineText(ctx, text, x, y, maxWidth, lineHeight) {
+    const words = text.split(' ');
+    let line = '';
+    for (let n = 0; n < words.length; n++) {
+      const testLine = line + words[n] + ' ';
+      const metrics = ctx.measureText(testLine);
+      const testWidth = metrics.width;
+      if (testWidth > maxWidth && n > 0) {
+        ctx.fillText(line, x, y);
+        line = words[n] + ' ';
+        y += lineHeight;
+      } else {
+        line = testLine;
+      }
+    }
+    ctx.fillText(line, x, y);
+  }
   canvas.onclick = (e) => {
     const rect = canvas.getBoundingClientRect();
     const mouseX = e.clientX - rect.left;
@@ -275,7 +290,7 @@ function verificarResposta(correto) {
     mensagem.textContent = "✅ Acertou!";
     faseAtual++;
   } else {
-    somErro.play();  // Som de erro só aqui, no momento do erro
+    somErro.play();
     mensagem.textContent = " Errou!";
     vidas--;
     if (vidas <= 0) {
@@ -288,9 +303,8 @@ function verificarResposta(correto) {
   setTimeout(() => desenharFase(), 1000);
 }
 function ajustarCanvas() {
-  // Define a largura máxima (ex: 400px) e ajusta a altura proporcionalmente
   const maxWidth = 400;
-  const proporcao = 600 / 400; // altura/largura original
+  const proporcao = 600 / 400;
   const largura = Math.min(window.innerWidth * 0.95, maxWidth);
   canvas.width = largura;
   canvas.height = largura * proporcao;

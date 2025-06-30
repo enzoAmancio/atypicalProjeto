@@ -59,31 +59,29 @@ const checkCards = () => {
 }
 
 const revealCard = ({target}) => {
-    if (target.parentNode.className.includes('reveal-card')) {
+    // Impede clicar em mais de duas cartas
+    if (target.parentNode.className.includes('reveal-card') || firstcard && secondcard) {
         return;
     }
     if (firstcard === '') {
         target.parentNode.classList.add('reveal-card');
         firstcard = target.parentNode;
-    }else if (secondcard=== ''){
+    } else if (secondcard === '') {
         target.parentNode.classList.add('reveal-card');
         secondcard = target.parentNode;
         checkCards();
     }
-
-   target.parentNode.classList.add('reveal-card')
 }
-
 const createCard = (character) => {
     const card = createElement('div', 'card');
     const front = createElement('div', 'face front');
     const back = createElement('div', 'face back');
-    front.style.backgroundImage = `url('../img/${character}.jpg')`;
+    front.style.backgroundImage = `url('imgs/minigame3/${character}.jpg')`;
 
-    card.appendChild (front);
-    card.appendChild (back);
+    card.appendChild(front);
+    card.appendChild(back);
 
-    card.addEventListener('click',revealCard);
+    card.addEventListener('click', revealCard);
     card.setAttribute('data-character', character);
 
     return card;

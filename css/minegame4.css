@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  
+
 }
 
 body {
@@ -26,18 +26,33 @@ h1 {
 
 canvas {
   width: 100%;
-  max-width: 720px;
+  max-width: 400px;
   height: auto;
-  border: 2px solid #000;
-  background-color: #fff;
   display: block;
-  margin: 20px auto;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 12px;
 }
 
 #mensagem {
   font-size: 1.4rem;
   margin-top: 15px;
   color: #2d3436;
+}
+
+.home {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 100;
+  margin: 0;
+  padding: 0;
+}
+
+.home img {
+  width: 40px;
+  height: 40px;
+  display: block;
 }
 
 /* Responsividade adicional */

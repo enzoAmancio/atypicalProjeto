@@ -1,4 +1,4 @@
-main{
+main {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -10,10 +10,10 @@ main{
     align-items: center;
     justify-content: center;
     padding: 0;
-    overflow:hidden;
+    overflow: hidden;
 }
 
-header{
+header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -34,12 +34,13 @@ header{
     box-sizing: border-box;
     justify-content: center;
 }
-.card{
+
+.card {
     aspect-ratio: 3/4;
     background-color: whitesmoke;
-     width: 70px;
-     max-width: 80px;
-     perspective: 1000px;
+    width: 70px;
+    max-width: 80px;
+    perspective: 1000px;
     position: relative;
     border-radius: 10px;
     margin: 0;
@@ -48,8 +49,9 @@ header{
     box-sizing: border-box;
     will-change: transform;
 }
-.face{
-     width: 100%;
+
+.face {
+    width: 100%;
     height: 100%;
     position: absolute;
     border-radius: 10px;
@@ -57,63 +59,56 @@ header{
     background-position: center;
     transition: all 400ms ease;
 }
-.front{
+
+.front {
     transform: rotateY(180deg);
     backface-visibility: hidden;
 }
-.back{
+
+.back {
     background-image: url('../imgs/minigame3/back.jpg');
     backface-visibility: hidden;
 }
 
-.reveal-card{
+.reveal-card {
     transform: rotateY(180deg);
 }
 
-.disable-card{
+.disable-card {
     filter: saturate(0);
     opacity: 0.5;
 }
 
-.home{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px auto 0 auto; /* centraliza horizontalmente e dá espaço acima */
-    padding: 10px 20px;
-    border-radius: 8px;
-    background-color: black;
-    color:aqua;
-    font-weight: bold;
-    font-size: 1rem;
-    border: none;
-    cursor: pointer;
-    text-align: center;
+
+.home {
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 100;
+    margin: 0;
+    padding: 0;
 }
-.home a {
-    color: inherit;
-    text-decoration: none;
+
+.home img {
+    width: 40px;
+    height: 40px;
+    display: block;
 }
 
 
-
-@media (max-width:700px) {
+@media (max-width: 700px) {
     .grid {
-        grid-template-columns: repeat(3, 1fr);
-        width: 192px;
+        grid-template-columns: repeat(4, 1fr);
+        width: 96vw;
+        max-width: 360px;
+        min-width: 160px;
+        gap: 6px;
     }
+
     .card {
-        width: 70px;
-        max-width: 80px;
-    }
-}
-@media (max-width:500px) {
-    .grid {
-        grid-template-columns: repeat(2,1fr);
-        width: 128px;
-    }
-    .card{
-        width: 70px;
-        max-width: 80px;
+        width: 100%;
+        max-width: unset;
+        min-width: 0;
+        aspect-ratio: 3/4;
     }
 }

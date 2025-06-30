@@ -23,7 +23,7 @@ digitar();
 
 let vidas = 5;
 let faseAtual = 0;
-const somAcerto = new Audio("sounds/somAcerto.mp3");
+const somAcerto = new Audio("imgs/minigame1/acerto.mp3");
 const somErro = new Audio("sounds/somErro.mp3");
 const musicaFundo = document.getElementById("musicaFundo");
 musicaFundo.volume = 0.5;
@@ -39,87 +39,92 @@ function tocarTrecho(audio, inicio, duracao) {
 
 const fases = [
   {
-    imagem: "img/abelha.jpeg",
+    imagem: "imgs/minegame4/buzzbuzz.jpeg",
     correta: "Abelha",
     opcoes: ["Abelha", "Barata", "Aranha"]
   },
   {
-    imagem: "img/aranha.jpeg",
+    imagem: "imgs/minegame4/aranha.jpeg",
     correta: "Aranha",
     opcoes: ["Cobra", "Abelha", "Aranha"]
   },
   {
-    imagem: "img/barata.jpeg",
+    imagem: "imgs/minegame4/barata.jpeg",
     correta: "Barata",
     opcoes: ["Caranguejo", "Barata", "Coruja"]
   },
   {
-    imagem: "img/cachorro.jpeg", // corrigido typo aqui
+    imagem: "imgs/minegame4/coruja.jpeg",
+    correta: "Coruja",
+    opcoes: ["Caranguejo", "Barata", "Coruja"]
+  },
+  {
+    imagem: "imgs/minegame4/doguinho.jpeg",
     correta: "Cachorro",
     opcoes: ["Cachorro", "Coelho", "Cobra"]
   },
   {
-    imagem: "img/caranguejo.jpeg",
+    imagem: "imgs/minegame4/caranguejo.jpeg",
     correta: "Caranguejo",
     opcoes: ["Caranguejo", "Barata", "Aranha"]
   },
   {
-    imagem: "img/cobra.jpeg",
+    imagem: "imgs/minegame4/cobrinha.jpeg",
     correta: "Cobra",
     opcoes: ["Cachorro", "Coruja", "Cobra"]
   },
   {
-    imagem: "img/coelhos.jpeg",
+    imagem: "imgs/minegame4/coelho.jpeg",
     correta: "Coelho",
     opcoes: ["Coelho", "Caranguejo", "Abelha"]
   },
   {
-    imagem: "img/elefante.jpeg",
+    imagem: "imgs/minegame4/elefante.jpeg",
     correta: "Elefante",
     opcoes: ["Elefante", "Cavalo", "Cobra"]
   },
   {
-    imagem: "img/galo.jpeg",
+    imagem: "imgs/minegame4/gala.jpeg",
     correta: "Galo",
     opcoes: ["Cachorro", "Galo", "Coelho"]
   },
   {
-    imagem: "img/golfinho.jpeg",
+    imagem: "imgs/minegame4/golf.jpeg",
     correta: "Golfinho",
     opcoes: ["Gato", "Galo", "Golfinho"]
   },
   {
-    imagem: "img/joaninha.jpeg",
+    imagem: "imgs/minegame4/joano.jpeg",
     correta: "Joaninha",
     opcoes: ["Joaninha", "Cachorro", "Gato"]
   },
   {
-    imagem: "img/leao.jpeg",
+    imagem: "imgs/minegame4/lionel.jpeg",
     correta: "Leão",
     opcoes: ["Cachorro", "Leão", "Coelho"]
   },
   {
-    imagem: "img/macaco.jpeg",
+    imagem: "imgs/minegame4/mamaco.jpeg",
     correta: "Macaco",
     opcoes: ["Leão", "Galo", "Macaco"]
   },
   {
-    imagem: "img/ovelha.jpeg",
+    imagem: "imgs/minegame4/ovelha.jpeg",
     correta: "Ovelha",
     opcoes: ["Ovelha", "Galo", "Macaco"]
   },
   {
-    imagem: "img/panda.jpeg",
+    imagem: "imgs/minegame4/panda.jpeg",
     correta: "Panda",
     opcoes: ["Ovelha", "Galo", "Panda"]
   },
   {
-    imagem: "img/pato.jpeg",
+    imagem: "imgs/minegame4/pato.jpeg",
     correta: "Pato",
     opcoes: ["Ovelha", "Pato", "Macaco"]
   },
   {
-    imagem: "img/tigre.jpeg",
+    imagem: "imgs/minegame4/tigrao.jpeg",
     correta: "Tigre",
     opcoes: ["Ovelha", "Pato", "Tigre"]
   },
@@ -181,10 +186,37 @@ async function desenharFase() {
   vidasSpan.textContent = vidas;
   faseSpan.textContent = faseAtual + 1;
 
-  if (faseAtual >= fases.length) {
-    mensagem.textContent = "🎉 Parabéns! Você venceu!";
-    return;
+if (vidas <= 0) {
+  mensagem.textContent = " Fim de jogo!";
+  canvas.onclick = null;
+
+canvas.onmousemove = (e) => {
+  const rect = canvas.getBoundingClientRect();
+  const mouseX = e.clientX - rect.left;
+  const mouseY = e.clientY - rect.top;
+  let sobreBotao = false;
+
+  for (let botao of botoes) {
+    if (
+      mouseX >= botao.x &&
+      mouseX <= botao.x + botao.w &&
+      mouseY >= botao.y &&
+      mouseY <= botao.y + botao.h
+    ) {
+      sobreBotao = true;
+      break;
+    }
   }
+  canvas.style.cursor = sobreBotao ? "pointer" : "default";
+};
+  setTimeout(() => location.reload(), 5000);
+  return;
+}
+if (faseAtual >= fases.length) {
+  mensagem.textContent = "🎉 Parabéns! Você venceu!";
+  setTimeout(() => location.reload(), 3000);
+  return;
+}
 
   const fase = fases[faseAtual];
   const botoes = [];
@@ -255,5 +287,17 @@ function verificarResposta(correto) {
 
   setTimeout(() => desenharFase(), 1000);
 }
-
+function ajustarCanvas() {
+  // Define a largura máxima (ex: 400px) e ajusta a altura proporcionalmente
+  const maxWidth = 400;
+  const proporcao = 600 / 400; // altura/largura original
+  const largura = Math.min(window.innerWidth * 0.95, maxWidth);
+  canvas.width = largura;
+  canvas.height = largura * proporcao;
+}
+window.addEventListener('resize', () => {
+  ajustarCanvas();
+  desenharFase();
+});
+ajustarCanvas();
 desenharFase();

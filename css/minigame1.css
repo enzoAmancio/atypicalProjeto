@@ -1,41 +1,41 @@
-/* Botão Home sempre no topo esquerdo */
-.home {
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  z-index: 100;
-  margin: 0;
-  padding: 0;
-}
-.home img {
-  width: 40px;
-  height: 40px;
-  margin: 0;
-}
-
 /* Reset e base */
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
+
 body {
   font-family: sans-serif;
   background: #f9f9f9;
   text-align: center;
 }
 
-/* Containers */
-.container-fluid-sm, .bordas {
-  border-radius: 16px;
-  box-shadow: 0 2px 8px #0001;
-  background: #fff;
-  padding: 1em;
-  margin: 1em auto;
-  max-width: 500px;
+/* Botão voltar para home */
+.home {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 100;
 }
 
-/* Imagem central */
+.home img {
+  width: 40px;
+  height: 40px;
+}
+
+/* Container geral */
+.container-fluid-sm,
+.bordas {
+  max-width: 700px;
+  margin: 1em auto;
+  padding: 0;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px #0001;
+}
+
+/* Imagem principal */
 #imagemObjeto {
   width: 80vw;
   max-width: 200px;
@@ -46,97 +46,113 @@ body {
   box-shadow: 0 2px 8px #0001;
 }
 
-/* Letras e dropzones */
-.palavra, .letras {
+/* Áreas de letras e lacunas */
+.palavra,
+.letras {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.5em;
   margin: 1em 0;
 }
-.dropzone, .letra {
+
+/* Dropzones (lacunas) e letras */
+.dropzone,
+.letra {
   min-width: 2.2em;
   min-height: 2.2em;
   font-size: 2em;
-  border-radius: 0.5em;
-  text-align: center;
   line-height: 2.2em;
-  background: #e0e0e0;
+  text-align: center;
+  border-radius: 0.5em;
   margin: 0.2em;
   cursor: grab;
   transition: background 0.2s;
 }
+
 .dropzone {
   border: 2px dashed #888;
+  background: #e0e0e0;
 }
+
 .letra {
-  background-color: #ccc;
-  cursor: grab;
-  transition: background 0.15s;
-  touch-action: none; 
+  background: #ccc;
+  touch-action: none;
 }
-.letra:active { cursor: grabbing; }
-.letra:hover  { background-color: #bbb; }
+
+.letra:hover {
+  background: #bbb;
+}
+
+.letra:active {
+  cursor: grabbing;
+}
+
+/* Botões */
 .btn {
-  background-color: #00bcd4;
-  color: #fff;
+  display: inline-block;
+  margin: 1em auto 0 auto;
+  padding: 0.7em 2em;
+  font-size: 1.1em;
+  font-weight: bold;
   border: none;
   border-radius: 8px;
-  font-weight: bold;
-  font-size: 1.1em;
-  padding: 0.7em 2em;
+  background-color: #00bcd4;
+  color: #fff;
   box-shadow: 0 2px 8px #0001;
   transition: background 0.2s;
   cursor: pointer;
-  margin: 1em auto 0 auto;
-  display: inline-block;
 }
+
 .btn:hover {
   background-color: #0097a7;
 }
-/* Responsividade para telas pequenas */
+
+/* Responsivo */
 @media (max-width: 600px) {
   .home {
-    position: fixed;
     top: 6px;
     left: 6px;
-    z-index: 100;
   }
-  .container-fluid-sm, .bordas {
+
+  .container-fluid-sm,
+  .bordas {
     max-width: 100vw;
     width: 100vw;
     margin: 0;
     padding: 0.5em 0.2em;
   }
+
   #imagemObjeto {
     width: 80vw;
     max-width: 80vw;
-    min-width: 0;
-    height: auto;
     margin: 0.5em auto;
   }
-  .palavra, .letras {
+
+  .palavra,
+  .letras {
     gap: 0.15em;
     margin: 0.5em 0;
-    flex-wrap: wrap;
   }
-  .dropzone, .letra {
+
+  .dropzone,
+  .letra {
     font-size: 1em;
     min-width: 1.1em;
     min-height: 1.1em;
     line-height: 1.1em;
     margin: 0.1em;
   }
+
   h2 {
     font-size: 1em;
-    gap: 0.1em;
   }
+
   .btn {
-    font-size: 1em;
-    padding: 0.5em 0;
     width: 98vw;
     max-width: 98vw;
-    margin: 1em auto 0 auto;
+    padding: 0.5em 0;
+    font-size: 1em;
     display: block;
   }
 }

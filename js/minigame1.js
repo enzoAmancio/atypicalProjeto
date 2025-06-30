@@ -76,7 +76,7 @@ function soltarToque(e) {
   letraSolta = cloneMovel = null;
 }
 
-// ——— NOVO: Função para permitir remover letras da dropzone ———
+
 function ativarRemocaoDeLetras(dropzone) {
   dropzone.addEventListener("click", () => {
     const letra = dropzone.textContent;
@@ -107,9 +107,9 @@ function embaralhar(arr) {
   }
 }
 
-// Aqui, removemos letras para a ordem original da palavra
+
 function removerLetras() {
-  // limpa a área de letras antes de recriar as letras
+  
   letrasDiv.innerHTML = "";
 
   // limpa todas as dropzones
@@ -117,7 +117,7 @@ function removerLetras() {
     drop.textContent = "";
   });
 
-  // recria as letras na ordem correta da palavraAtual
+
   palavraAtual.split("").forEach(letra => {
     const novaLetra = document.createElement("div");
     novaLetra.className = "letra";
@@ -164,7 +164,7 @@ function carregarObjeto() {
     palavraDiv.appendChild(div);
   });
 
-  // Cria letras na ordem original (sem embaralhar aqui)
+ 
   obj.palavra.split("").forEach(letra => {
     const div = document.createElement("div");
     div.className = "letra";
@@ -236,6 +236,6 @@ function verificarPalavra() {
   }, 1500);
 }
 
-// ——— Inicializa o jogo ———
+
 criarFilaObjetos();
 carregarObjeto();

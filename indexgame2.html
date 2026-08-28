@@ -2,24 +2,45 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Jogo das Emoções</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jornada das Emoções</title>
   <link rel="stylesheet" href="css/minigame2(1).css">
 </head>
 <body>
-  <h1>Qual é a emoção?</h1>
+  <a href="minegame2.html" class="voltar">Voltar</a>
 
-  <div class="game-container">
-    <img id="emotion-image" src="" alt="Emoção" />
-    <div class="options">
-      <button onclick="checkAnswer(this)">Alegria</button>
-      <button onclick="checkAnswer(this)">Tristeza</button>
-      <button onclick="checkAnswer(this)">Raiva</button>
-      <button onclick="checkAnswer(this)">Fome</button>
-      <button onclick="checkAnswer(this)">Surpreso</button>
-    </div>
-    <p id="feedback"></p>
-  </div>
-<a href="minegame2.html" class="voltar"></a>
+  <main class="emotion-game">
+    <section class="game-hero">
+      <span class="eyebrow">Atypical Emotion</span>
+      <h1>Jornada das Emoções</h1>
+      <p>Observe a expressão, reconheça a emoção ou necessidade e escolha uma atitude segura para comunicar o que sente.</p>
+    </section>
+
+    <section class="game-board" aria-live="polite">
+      <div class="progress-wrap" aria-label="Progresso do jogo">
+        <span id="round-label">Rodada 1 de 5</span>
+        <div class="progress-track"><div id="progress-bar"></div></div>
+      </div>
+
+      <div class="emotion-stage">
+        <img id="emotion-image" src="" alt="Emoção">
+        <div class="emotion-copy">
+          <span id="step-label">Etapa 1</span>
+          <h2 id="challenge-title">Qual emoção aparece?</h2>
+          <p id="emotion-context">Observe rosto, corpo e situação.</p>
+        </div>
+      </div>
+
+      <div id="options" class="options"></div>
+      <p id="feedback" class="feedback"></p>
+    </section>
+
+    <section class="mediator-card">
+      <strong>Para quem acompanha</strong>
+      <p>Depois da resposta, converse sobre quando essa emoção aparece e combine uma frase simples para pedir ajuda, pausa ou acolhimento.</p>
+    </section>
+  </main>
+
   <script src="js/minigame2.js"></script>
 </body>
 </html>

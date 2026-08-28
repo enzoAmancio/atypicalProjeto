@@ -1,114 +1,172 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f4ffff;
+  color: #18323d;
+  font-family: Arial, sans-serif;
+}
+
 main {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    background-image: url('../Img/fundo.jpg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    min-height: 100vh;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    overflow: hidden;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 70px 16px 34px;
 }
-
-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: rgba(1, 247, 255, 0.6);
-    width: 100%;
-    max-width: 400px;
-    padding: 10px;
-    margin: 30px auto 15px auto;
-    border-radius: 5px;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 10px;
-    width: 400px;
-    margin: 0 auto;
-    box-sizing: border-box;
-    justify-content: center;
-}
-
-.card {
-    aspect-ratio: 3/4;
-    background-color: whitesmoke;
-    width: 70px;
-    max-width: 80px;
-    perspective: 1000px;
-    position: relative;
-    border-radius: 10px;
-    margin: 0;
-    transition: all 400ms ease;
-    transform-style: preserve-3d;
-    box-sizing: border-box;
-    will-change: transform;
-}
-
-.face {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    border-radius: 10px;
-    background-size: cover;
-    background-position: center;
-    transition: all 400ms ease;
-}
-
-.front {
-    transform: rotateY(180deg);
-    backface-visibility: hidden;
-}
-
-.back {
-    background-image: url('../imgs/minigame3/back.jpg');
-    backface-visibility: hidden;
-}
-
-.reveal-card {
-    transform: rotateY(180deg);
-}
-
-.disable-card {
-    filter: saturate(0);
-    opacity: 0.5;
-}
-
 
 .home {
-    position: fixed;
-    top: 12px;
-    left: 12px;
-    z-index: 100;
-    margin: 0;
-    padding: 0;
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  z-index: 10;
 }
 
 .home img {
-    width: 40px;
-    height: 40px;
-    display: block;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0, 66, 96, 0.14);
+  height: 42px;
+  padding: 7px;
+  width: 42px;
 }
 
+.game-hero {
+  margin-bottom: 22px;
+  max-width: 780px;
+  text-align: center;
+}
 
-@media (max-width: 700px) {
-    .grid {
-        grid-template-columns: repeat(4, 1fr);
-        width: 96vw;
-        max-width: 360px;
-        min-width: 160px;
-        gap: 6px;
-    }
+.eyebrow {
+  color: #0072a3;
+  display: inline-block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
 
-    .card {
-        width: 100%;
-        max-width: unset;
-        min-width: 0;
-        aspect-ratio: 3/4;
-    }
+.game-hero h1 {
+  color: #004c6d;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  line-height: 1.05;
+  margin: 0 0 12px;
+}
+
+.game-hero p {
+  color: #48616b;
+  line-height: 1.65;
+  margin: 0 auto;
+}
+
+.game-shell {
+  background: #fff;
+  border: 1px solid #d8edf4;
+  border-radius: 12px;
+  box-shadow: 0 22px 50px rgba(0, 66, 96, 0.14);
+  padding: 20px;
+  width: min(720px, 100%);
+}
+
+header {
+  align-items: center;
+  background: #e8f8fc;
+  border-radius: 8px;
+  color: #004c6d;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: space-between;
+  padding: 12px;
+}
+
+#restart {
+  background: #005f87;
+  border: 0;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 700;
+  padding: 10px 14px;
+}
+
+.game-feedback {
+  color: #31515a;
+  font-weight: 700;
+  line-height: 1.45;
+  margin: 16px auto;
+  min-height: 30px;
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.card {
+  aspect-ratio: 3 / 4;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  perspective: 1000px;
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.face {
+  backface-visibility: hidden;
+  border-radius: 10px;
+  inset: 0;
+  position: absolute;
+  transition: transform 0.35s ease, filter 0.2s ease;
+}
+
+.front {
+  background-position: center;
+  background-size: cover;
+  border: 5px solid #fff;
+  box-shadow: inset 0 0 0 1px rgba(0, 95, 135, 0.18);
+  transform: rotateY(180deg);
+}
+
+.back {
+  background-image: url("../imgs/minigame3/back.jpg");
+  background-position: center;
+  background-size: cover;
+  border: 5px solid #e8f8fc;
+}
+
+.reveal-card .front,
+.matched .front {
+  transform: rotateY(0);
+}
+
+.reveal-card .back,
+.matched .back {
+  transform: rotateY(180deg);
+}
+
+.matched {
+  cursor: default;
+}
+
+.matched .front {
+  filter: saturate(0.6) brightness(1.08);
+}
+
+.card:focus {
+  outline: 4px solid #fdae03;
+  outline-offset: 4px;
+}
+
+@media (max-width: 620px) {
+  .grid {
+    gap: 8px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }

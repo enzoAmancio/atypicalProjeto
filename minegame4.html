@@ -1,30 +1,49 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-  <meta charset="UTF-8" />
-  <title>Atypical</title>
-  <link rel="stylesheet" href="css/minegame4.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trilha dos Animais</title>
+  <link rel="stylesheet" href="css/minegame4.css">
 </head>
-
 <body>
   <a href="abaminigame.html" class="home">
-    <img src="imgs/minegame2/casa.png" alt="Home">
+    <img src="imgs/minegame2/casa.png" alt="Voltar para minigames">
   </a>
-  <h1 id="titulo">Seja Bem Vindo ao Mini Game Associação de Animais </h1>
 
-  <p id="info">
-    Vidas: <span id="vidas">5</span> | Fase: <span id="fase">1</span>
-  </p>
+  <main class="animal-game">
+    <section class="game-hero">
+      <span class="eyebrow">Associação e categorias</span>
+      <h1>Trilha dos Animais</h1>
+      <p>Observe a imagem ou pista, escolha a resposta e descubra uma característica do animal.</p>
+    </section>
 
-  <canvas id="gameCanvas" width="400" height="500"></canvas>
+    <section class="game-board" aria-live="polite">
+      <div class="status-row">
+        <span>Vidas: <strong id="vidas">5</strong></span>
+        <span>Fase: <strong id="fase">1</strong></span>
+      </div>
 
-  <p id="mensagem"></p>
+      <div class="animal-card">
+        <img id="animalImage" src="" alt="">
+        <div class="animal-copy">
+          <span id="categoryLabel">Categoria</span>
+          <h2 id="questionText">Qual é o animal?</h2>
+          <p id="hintText">Observe as pistas.</p>
+        </div>
+      </div>
+
+      <div id="options" class="options"></div>
+      <p id="mensagem" class="feedback"></p>
+    </section>
+
+    <section class="mediator-card">
+      <strong>Para quem acompanha</strong>
+      <p>Peça para a criança apontar uma pista: cor, forma, ambiente, som ou função. Isso treina comparação e linguagem.</p>
+    </section>
+  </main>
 
   <audio id="musicaFundo" src="imgs/abaMinigame/spark-groove-electro-swing-dancy-funny-198158.mp3" loop></audio>
-  <button onclick="document.getElementById('musicaFundo').play()">Tocar Música</button>
-
   <script src="js/minegame4.js"></script>
 </body>
-
 </html>

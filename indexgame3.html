@@ -1,26 +1,33 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Memory Atypical</title>
+    <title>Memória das Emoções</title>
     <link rel="stylesheet" href="css/logingame3.css">
     <link rel="stylesheet" href="css/game3.css">
     <script defer src="js/game.js"></script>
 </head>
-
 <body>
     <a href="minegame3.html" class="home">
-        <img src="imgs/minegame2/casa.png" alt="Home">
+        <img src="imgs/minegame2/casa.png" alt="Voltar">
     </a>
     <main>
-        <header>
-            <span class="player"></span>
-            <span>Tempo:<span class="timer">00</span></span>
-        </header>
-        <div class="grid"></div>
+        <section class="game-hero">
+            <span class="eyebrow">Memória visual</span>
+            <h1>Memória das Emoções</h1>
+            <p>Encontre pares, nomeie emoções e converse sobre situações em que elas aparecem.</p>
+        </section>
+
+        <section class="game-shell" aria-live="polite">
+            <header>
+                <span class="player"></span>
+                <span>Tempo: <strong class="timer">0</strong>s</span>
+                <button type="button" id="restart">Reiniciar</button>
+            </header>
+            <p class="game-feedback">Escolha duas cartas para começar.</p>
+            <div class="grid"></div>
+        </section>
     </main>
 </body>
-
 </html>

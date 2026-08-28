@@ -1,114 +1,137 @@
- const grid = document.querySelector('.grid');
-const spanPlayer = document.querySelector('.player');
-const timer = document.querySelector('.timer');
-let loop;
+const grid = document.querySelector(".grid");
+const spanPlayer = document.querySelector(".player");
+const timer = document.querySelector(".timer");
+const feedback = document.querySelector(".game-feedback");
+const restartButton = document.getElementById("restart");
 
 const characters = [
-    'Alegria',
-    'Ansiedade',
-    'Inveja',
-    'Medo',
-    'Nojinho',
-    'Raiva',
-    'Surpresa',
-    'Tedio',
-    'Tristeza',
-    'Vergonha',
+  "Alegria",
+  "Ansiedade",
+  "Medo",
+  "Raiva",
+  "Surpresa",
+  "Tristeza",
+  "Vergonha",
+  "Tedio"
 ];
 
+const prompts = {
+  Alegria: "Conte uma coisa que trouxe alegria hoje.",
+  Ansiedade: "Qual pausa pode ajudar quando o corpo fica agitado?",
+  Medo: "Quem pode ajudar quando aparece medo?",
+  Raiva: "Qual frase segura ajuda a pedir uma pausa?",
+  Surpresa: "O que podemos perguntar quando algo muda de repente?",
+  Tristeza: "Que cuidado pode acolher tristeza?",
+  Vergonha: "Como pedir tempo para responder?",
+  Tedio: "Que atividade calma pode ser escolhida?"
+};
 
-const createElement = (tag, className) => {
-    const element = document.createElement(tag);
-    element.className = className;
-    return element;
+let firstCard = null;
+let secondCard = null;
+let locked = false;
+let matchedPairs = 0;
+let loop = null;
+
+function shuffle(items) {
+  return [...items].sort(() => Math.random() - 0.5);
 }
 
-const checkEndGame = () => {
-    const disableCards = document.querySelectorAll('.disable-card');
-
-    if (disableCards.length === 20){
-        clearInterval(this.loop);
-        alert(`Parabéns, ${spanPlayer.innerHTML}!Seu tempo foi: ${timer.innerHTML}`);
-        setTimeout(() => location.reload(), 1500);
-    }
-
+function createElement(tag, className) {
+  const element = document.createElement(tag);
+  element.className = className;
+  return element;
 }
 
-let firstcard = '';
-let secondcard = '';
+function createCard(character) {
+  const card = createElement("button", "card");
+  const front = createElement("span", "face front");
+  const back = createElement("span", "face back");
 
-const checkCards = () => {
-    const firstcharacter = firstcard.getAttribute('data-character');
-    const secondcharacter = secondcard.getAttribute('data-character');
-    if (firstcharacter === secondcharacter) {
-        firstcard.firstChild.classList.add('disable-card');
-        secondcard.firstChild.classList.add('disable-card');
-        firstcard = '';
-        secondcard = '';
-        checkEndGame();
-    }else{
-        setTimeout(() => {
-            
-        firstcard.classList.remove('reveal-card');
-        secondcard.classList.remove('reveal-card');
-        firstcard = '';
-        secondcard = '';
-    }, 500);
+  front.style.backgroundImage = `url('imgs/minigame3/${character}.jpg')`;
+  card.type = "button";
+  card.dataset.character = character;
+  card.setAttribute("aria-label", `Carta de emoção ${character}`);
+  card.appendChild(front);
+  card.appendChild(back);
+  card.addEventListener("click", () => revealCard(card));
+
+  return card;
 }
 
+function revealCard(card) {
+  if (locked || card === firstCard || card.classList.contains("matched")) return;
+
+  card.classList.add("reveal-card");
+
+  if (!firstCard) {
+    firstCard = card;
+    feedback.textContent = "Escolha outra carta.";
+    return;
+  }
+
+  secondCard = card;
+  locked = true;
+  checkCards();
 }
 
-const revealCard = ({target}) => {
-    // Impede clicar em mais de duas cartas
-    if (target.parentNode.className.includes('reveal-card') || firstcard && secondcard) {
-        return;
-    }
-    if (firstcard === '') {
-        target.parentNode.classList.add('reveal-card');
-        firstcard = target.parentNode;
-    } else if (secondcard === '') {
-        target.parentNode.classList.add('reveal-card');
-        secondcard = target.parentNode;
-        checkCards();
-    }
-}
-const createCard = (character) => {
-    const card = createElement('div', 'card');
-    const front = createElement('div', 'face front');
-    const back = createElement('div', 'face back');
-    front.style.backgroundImage = `url('imgs/minigame3/${character}.jpg')`;
+function checkCards() {
+  const firstCharacter = firstCard.dataset.character;
+  const secondCharacter = secondCard.dataset.character;
 
-    card.appendChild(front);
-    card.appendChild(back);
+  if (firstCharacter === secondCharacter) {
+    firstCard.classList.add("matched");
+    secondCard.classList.add("matched");
+    matchedPairs++;
+    feedback.textContent = `Par: ${firstCharacter}. ${prompts[firstCharacter]}`;
+    resetSelection();
+    checkEndGame();
+    return;
+  }
 
-    card.addEventListener('click', revealCard);
-    card.setAttribute('data-character', character);
+  feedback.textContent = "Ainda não formou par. Observe as imagens e tente lembrar.";
 
-    return card;
+  setTimeout(() => {
+    firstCard.classList.remove("reveal-card");
+    secondCard.classList.remove("reveal-card");
+    resetSelection();
+  }, 900);
 }
 
-const loadgame = () => {
-
-    	const duplicateCharacters = [ ...characters, ...characters ];
-
-        const shuffledCharacters = duplicateCharacters.sort(() => Math.random() - 0.5);
-
-    shuffledCharacters.forEach((character) => {
-        const card = createCard(character);
-        grid.appendChild(card);
-    });
+function resetSelection() {
+  firstCard = null;
+  secondCard = null;
+  locked = false;
 }
 
-const startTime = () => {
-    loop = setInterval(() => {
-        const currentTime = +timer.innerHTML;
-        timer.innerHTML = currentTime + 1;
-    }, 1000);
-} 
+function checkEndGame() {
+  if (matchedPairs < grid.children.length / 2) return;
+
+  clearInterval(loop);
+  feedback.textContent = `Muito bem! Você encontrou todos os pares em ${timer.textContent} segundos.`;
+}
+
+function loadGame() {
+  clearInterval(loop);
+  grid.innerHTML = "";
+  timer.textContent = "0";
+  matchedPairs = 0;
+  resetSelection();
+
+  const selected = shuffle(characters).slice(0, 6);
+  const deck = shuffle([...selected, ...selected]);
+
+  deck.forEach((character) => {
+    grid.appendChild(createCard(character));
+  });
+
+  feedback.textContent = "Escolha duas cartas para começar.";
+  loop = setInterval(() => {
+    timer.textContent = String(Number(timer.textContent) + 1);
+  }, 1000);
+}
 
 window.onload = () => {
-    spanPlayer.innerHTML = localStorage.getItem('player');
-    timer.innerHTML = '0';
-    loadgame();
-    startTime();
-}
+  spanPlayer.textContent = localStorage.getItem("player") || "Jogador";
+  restartButton.addEventListener("click", loadGame);
+  loadGame();
+};

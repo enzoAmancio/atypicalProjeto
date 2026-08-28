@@ -1,241 +1,148 @@
-// ——— Dados do jogo ———
 const objetos = [
-  { palavra: "BOLA",   imagem: "imgs/minigame1/bola.png" },
-  { palavra: "SAPO",   imagem: "imgs/minigame1/sapo.png" },
-  { palavra: "UVA",    imagem: "imgs/minigame1/uva.png" },
-  { palavra: "LIVRO",  imagem: "imgs/minigame1/livro.png" },
-  { palavra: "GATO",   imagem: "imgs/minigame1/gato.png" },
-  { palavra: "COELHO", imagem: "imgs/minigame1/coelho.png" },
+  { palavra: "UVA", imagem: "imgs/minigame1/uva.png", dica: "Fruta pequena que cresce em cachos.", silabas: "U-VA", nivel: "Inicial", frase: "Eu posso pedir: quero uva." },
+  { palavra: "BOLA", imagem: "imgs/minigame1/bola.png", dica: "Objeto usado para brincar, chutar ou jogar.", silabas: "BO-LA", nivel: "Inicial", frase: "Eu posso dizer: vamos brincar de bola." },
+  { palavra: "GATO", imagem: "imgs/minigame1/gato.png", dica: "Animal de estimação que costuma miar.", silabas: "GA-TO", nivel: "Inicial", frase: "Eu posso falar: o gato miou." },
+  { palavra: "CASA", imagem: "imgs/minigame1/casa.png", dica: "Lugar onde pessoas moram e descansam.", silabas: "CA-SA", nivel: "Intermediário", frase: "Eu posso comunicar: quero ir para casa." },
+  { palavra: "LIVRO", imagem: "imgs/minigame1/livro.png", dica: "Objeto com páginas usado para ler histórias.", silabas: "LI-VRO", nivel: "Intermediário", frase: "Eu posso pedir: leia o livro comigo." },
+  { palavra: "COELHO", imagem: "imgs/minigame1/coelho.png", dica: "Animal com orelhas grandes.", silabas: "CO-E-LHO", nivel: "Desafio", frase: "Eu posso falar: o coelho tem orelhas grandes." },
+  { palavra: "ESTRELA", imagem: "imgs/minigame1/estrela.png", dica: "Brilha no céu durante a noite.", silabas: "ES-TRE-LA", nivel: "Desafio", frase: "Eu posso dizer: vi uma estrela no céu." }
 ];
 
-// ——— Estado e elementos ———
-let estrelas = 0;
 let filaObjetos = [];
-let palavraAtual = ""; // <-- variável global para guardar a palavra atual
+let objetoAtual = null;
+let letrasUsadas = [];
+let estrelas = 0;
+let dicaVisivel = false;
 
-const som        = document.getElementById("somCorreto"); som.volume = 0.2;
+const som = document.getElementById("somCorreto");
 const palavraDiv = document.getElementById("palavra");
-const letrasDiv  = document.getElementById("areaLetras");
-const mensagem   = document.getElementById("mensagem");
-const imagem     = document.getElementById("imagemObjeto");
+const letrasDiv = document.getElementById("areaLetras");
+const mensagem = document.getElementById("mensagem");
+const imagem = document.getElementById("imagemObjeto");
 const estrelasSp = document.getElementById("estrelas");
+const pistaObjeto = document.getElementById("pistaObjeto");
+const fraseObjeto = document.getElementById("fraseObjeto");
+const nivelAtual = document.getElementById("nivelAtual");
 
-// ——— Touch universal ———
-let tocando = false, letraSolta = null, cloneMovel = null;
+som.volume = 0.2;
 
-function habilitarToqueNaLetra(elem) {
-  elem.addEventListener("touchstart", iniciarToque, { passive: false });
+function embaralhar(items) {
+  return [...items].sort(() => Math.random() - 0.5);
 }
 
-function iniciarToque(e) {
-  e.preventDefault();
-  tocando = true;
-  letraSolta = e.currentTarget;
-
-  cloneMovel = letraSolta.cloneNode(true);
-  cloneMovel.style.position = "fixed";
-  cloneMovel.style.pointerEvents = "none";
-  cloneMovel.style.opacity = "0.9";
-  cloneMovel.style.zIndex = "1000";
-  document.body.appendChild(cloneMovel);
-
-  letraSolta.style.opacity = "0.4";
-  moverToque(e);
-
-  document.addEventListener("touchmove", moverToque, { passive: false });
-  document.addEventListener("touchend", soltarToque);
-  document.addEventListener("touchcancel", soltarToque);
-}
-
-function moverToque(e) {
-  if (!tocando || !cloneMovel) return;
-  const t = e.touches[0];
-  cloneMovel.style.left = `${t.clientX - cloneMovel.offsetWidth / 2}px`;
-  cloneMovel.style.top = `${t.clientY - cloneMovel.offsetHeight / 2}px`;
-}
-
-function soltarToque(e) {
-  if (!tocando) return;
-  const t = e.changedTouches[0];
-  const alvo = document.elementFromPoint(t.clientX, t.clientY);
-
-  if (alvo && alvo.classList.contains("dropzone") && alvo.textContent === "") {
-    alvo.textContent = letraSolta.textContent;
-    letraSolta.remove(); // ← Remove da área de letras
-    verificarPalavra();
-  }
-
-  letraSolta.style.opacity = "1";
-  cloneMovel.remove();
-
-  document.removeEventListener("touchmove", moverToque);
-  document.removeEventListener("touchend", soltarToque);
-  document.removeEventListener("touchcancel", soltarToque);
-
-  tocando = false;
-  letraSolta = cloneMovel = null;
-}
-
-
-function ativarRemocaoDeLetras(dropzone) {
-  dropzone.addEventListener("click", () => {
-    const letra = dropzone.textContent;
-    if (letra !== "") {
-      // Cria letra de volta na área de letras
-      const novaLetra = document.createElement("div");
-      novaLetra.className = "letra";
-      novaLetra.draggable = true;
-      novaLetra.textContent = letra;
-
-      novaLetra.addEventListener("dragstart", e => {
-        e.dataTransfer.setData("text", letra);
-      });
-
-      habilitarToqueNaLetra(novaLetra);
-
-      letrasDiv.appendChild(novaLetra);
-      dropzone.textContent = ""; // limpa a dropzone
-    }
-  });
-}
-
-// ——— Funções principais ———
-function embaralhar(arr) {
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
-}
-
-
-function removerLetras() {
-  
-  letrasDiv.innerHTML = "";
-
-  // limpa todas as dropzones
-  document.querySelectorAll("#palavra .dropzone").forEach(drop => {
-    drop.textContent = "";
-  });
-
-
-  palavraAtual.split("").forEach(letra => {
-    const novaLetra = document.createElement("div");
-    novaLetra.className = "letra";
-    novaLetra.draggable = true;
-    novaLetra.textContent = letra;
-
-    novaLetra.addEventListener("dragstart", e => {
-      e.dataTransfer.setData("text", letra);
-    });
-
-    habilitarToqueNaLetra(novaLetra);
-
-    letrasDiv.appendChild(novaLetra);
-  });
-}
-
-function criarFilaObjetos() {
-  filaObjetos = [...objetos];
-  embaralhar(filaObjetos);
+function iniciarFila() {
+  filaObjetos = embaralhar(objetos);
 }
 
 function carregarObjeto() {
+  if (filaObjetos.length === 0) iniciarFila();
+
+  objetoAtual = filaObjetos.shift();
+  letrasUsadas = [];
+  dicaVisivel = false;
+
+  imagem.src = objetoAtual.imagem;
+  imagem.alt = `Imagem de ${objetoAtual.palavra.toLowerCase()}`;
+  nivelAtual.textContent = `Nível ${objetoAtual.nivel}`;
+  pistaObjeto.textContent = "Observe a imagem e toque nas letras na ordem correta.";
+  fraseObjeto.textContent = "";
   mensagem.textContent = "";
+
+  renderPalavra();
+  renderLetras();
+}
+
+function renderPalavra() {
   palavraDiv.innerHTML = "";
-  letrasDiv.innerHTML = "";
 
-  if (filaObjetos.length === 0) criarFilaObjetos();
-  const obj = filaObjetos.shift();
-
-  palavraAtual = obj.palavra; // guarda a palavra atual
-
-  imagem.src = obj.imagem;
-  imagem.style.display = "inline";
-
-  // Cria lacunas
-  obj.palavra.split("").forEach(letra => {
-    const div = document.createElement("div");
-    div.className = "dropzone";
-    div.dataset.correto = letra;
-
-    // permitir clique para remover a letra
-    ativarRemocaoDeLetras(div);
-
-    palavraDiv.appendChild(div);
-  });
-
- 
-  obj.palavra.split("").forEach(letra => {
-    const div = document.createElement("div");
-    div.className = "letra";
-    div.draggable = true;
-    div.textContent = letra;
-
-    // Mouse
-    div.addEventListener("dragstart", e => {
-      e.dataTransfer.setData("text", letra);
-    });
-
-    // Toque
-    habilitarToqueNaLetra(div);
-
-    letrasDiv.appendChild(div);
-  });
-
-  // Dropzones para mouse
-  document.querySelectorAll(".dropzone").forEach(z => {
-    z.addEventListener("dragover", e => e.preventDefault());
-
-    z.addEventListener("drop", e => {
-      e.preventDefault();
-      const letra = e.dataTransfer.getData("text");
-      if (z.textContent === "") {
-        z.textContent = letra;
-
-        // Remove letra correspondente da área de letras
-        const blocos = document.querySelectorAll(".letra");
-        for (const b of blocos) {
-          if (b.textContent === letra) {
-            b.remove();
-            break;
-          }
-        }
-
-        verificarPalavra();
-      }
-    });
+  objetoAtual.palavra.split("").forEach((letra, index) => {
+    const slot = document.createElement("button");
+    slot.type = "button";
+    slot.className = "dropzone";
+    slot.textContent = letrasUsadas[index] || "";
+    slot.setAttribute("aria-label", letrasUsadas[index] ? `Letra ${letrasUsadas[index]}` : "Espaço vazio");
+    slot.addEventListener("click", () => removerLetra(index));
+    palavraDiv.appendChild(slot);
   });
 }
 
-function verificarPalavra() {
-  const completa = [...document.querySelectorAll(".dropzone")]
-    .every(z => z.textContent === z.dataset.correto);
+function renderLetras() {
+  letrasDiv.innerHTML = "";
+  const extras = ["A", "E", "I", "O", "S", "T"].filter((letra) => !objetoAtual.palavra.includes(letra)).slice(0, 2);
+  const letras = embaralhar([...objetoAtual.palavra.split(""), ...extras]);
 
-  if (!completa) return;
+  letras.forEach((letra) => {
+    const botao = document.createElement("button");
+    botao.type = "button";
+    botao.className = "letra";
+    botao.textContent = letra;
+    botao.addEventListener("click", () => escolherLetra(letra));
+    letrasDiv.appendChild(botao);
+  });
+}
+
+function escolherLetra(letra) {
+  if (letrasUsadas.length >= objetoAtual.palavra.length) return;
+
+  const letraEsperada = objetoAtual.palavra[letrasUsadas.length];
+
+  if (letra === letraEsperada) {
+    letrasUsadas.push(letra);
+    mensagem.textContent = "Boa! Continue na próxima letra.";
+    mensagem.className = "mensagem success";
+    renderPalavra();
+    verificarPalavra();
+  } else {
+    mensagem.textContent = `Quase. A próxima letra começa o som "${letraEsperada}". Tente novamente.`;
+    mensagem.className = "mensagem attention";
+  }
+}
+
+function removerLetra(index) {
+  if (!letrasUsadas[index]) return;
+
+  letrasUsadas = letrasUsadas.slice(0, index);
+  mensagem.textContent = "Sem problema. Vamos voltar um passo.";
+  mensagem.className = "mensagem attention";
+  renderPalavra();
+}
+
+function verificarPalavra() {
+  if (letrasUsadas.join("") !== objetoAtual.palavra) return;
 
   som.play();
   estrelas++;
   estrelasSp.textContent = estrelas;
-  mensagem.textContent = "Muito bem!";
-  mensagem.style.color = "green";
+  fraseObjeto.textContent = objetoAtual.frase;
+  mensagem.textContent = `Você montou ${objetoAtual.palavra}. Agora leia a frase em voz alta.`;
+  mensagem.className = "mensagem success";
 
   setTimeout(() => {
     if (estrelas >= 5) {
-      if (confirm("Você ganhou 5 estrelas! Deseja continuar jogando?")) {
-        estrelas = 0;
-        estrelasSp.textContent = "0";
-        carregarObjeto();
-      } else {
-        mensagem.textContent = "Parabéns! Jogo finalizado.";
-        palavraDiv.innerHTML = letrasDiv.innerHTML = "";
-        imagem.style.display = "none";
-      }
-    } else {
-      carregarObjeto();
+      mensagem.textContent = "Você ganhou 5 estrelas. Faça uma pausa ou continue quando quiser.";
+      estrelas = 0;
+      estrelasSp.textContent = "0";
     }
-  }, 1500);
+    carregarObjeto();
+  }, 2600);
 }
 
+function mostrarDica() {
+  if (!objetoAtual) return;
 
-criarFilaObjetos();
+  dicaVisivel = !dicaVisivel;
+  pistaObjeto.textContent = dicaVisivel
+    ? `Dica: ${objetoAtual.dica} Sílabas: ${objetoAtual.silabas}.`
+    : "Observe a imagem e toque nas letras na ordem correta.";
+}
+
+function removerLetras() {
+  letrasUsadas = [];
+  fraseObjeto.textContent = "";
+  mensagem.textContent = "Tudo bem, vamos recomeçar esta palavra.";
+  mensagem.className = "mensagem attention";
+  renderPalavra();
+}
+
+iniciarFila();
 carregarObjeto();
